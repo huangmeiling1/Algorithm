@@ -32,11 +32,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_btn_generate:
-                generateItems();
+                directSort();
+
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                directSort();
+              // generateItems();
+                intsertSort();
                 displayItems(tvResult);
                 break;
             default:
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv.setText(display);
     }
 
-    private void directSort() {
+    private void directSort() {  //直接选择排序
         //todo:直接选择排序的具体实现
         //分为有序和无序区，每一趟排序都在无序区依次对比，记录对比区域的最小元素的位置。
         //然后把无序区第一个元素和所记录的最小元素进行交换，无序区少一个，有序区多一个，循环往复直至质无序区
@@ -68,6 +70,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             swap(minpos,i);
         }
 
+    }
+    private  void intsertSort(){
+        int i;
+        for (i=1;i<items.length;i++){
+            if (items[i]<items[i-1]){
+                int temp=items[i];
+
+                int w=i-1;
+                for (int j=w;j>0&temp<items[j];j--){
+                    items [j+1]=items[j];
+                    w--;
+                }
+                items[w+1]=temp;
+            }
+        }
     }
 
 
