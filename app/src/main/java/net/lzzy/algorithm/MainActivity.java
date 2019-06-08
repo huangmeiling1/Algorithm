@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //todo:直接选择排序的具体实现
         //分为有序和无序区，每一趟排序都在无序区依次对比，记录对比区域的最小元素的位置。
         //然后把无序区第一个元素和所记录的最小元素进行交换，无序区少一个，有序区多一个，循环往复直至质无序区
-        int timp;
+        //元素数量为0
         for (i=0;i<items.length-1;i++) {
             int minpos=i;
             for (int j = i+1; j < items.length; j++) {
@@ -70,8 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void swap(int minpos, int i) {
-
+    private void swap(int m, int n) {
+        int tmp=items[m];
+        items[m]=items[n];
+        items[n]=tmp;
     }
 
     private void generateItems() {
