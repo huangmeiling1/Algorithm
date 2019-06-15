@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import net.lzzy.algorithm.algorlib.DirectSort;
+import net.lzzy.algorithm.algorlib.InsertSort;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -13,7 +17,7 @@ import java.util.Random;
  * @author Administrator
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Integer[] items;
+     Integer[] items;
     private EditText edtItems;
     private TextView tvResult;
     int i, j;
@@ -37,8 +41,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
+                InsertSort <Integer> sort =new InsertSort<>(items);
 
-                intsertSort();
+               // DirectSort sort=new DirectSort(items);
+                sort.sortWinthTime();
+                String result=sort.getResult();
+                tvResult.setText(result);
+                Toast.makeText(this, "总时长："+sort.getDuration(), Toast.LENGTH_SHORT).show();
+//                intsertSort();
                 displayItems(tvResult);
                 break;
             default:
@@ -71,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-    private  void intsertSort(){
+    public   void intsertSort(){
 //        for ( int i=1;i<items.length;i++){
 //            if (items[i]<items[i-1]){
 //                int temp=items[i];
