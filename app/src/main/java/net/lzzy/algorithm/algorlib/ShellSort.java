@@ -11,17 +11,22 @@ public class ShellSort <T extends Comparable<? super T>>extends BaseSort{
 
     @Override
     public void sort() {
-        for ( int i=1;i<items.length;i++) {
-            int j=i-1;
+            int len=items.length;
+            int g=len/2;
+            while (g>0){
+        for ( int i=g;i<items.length;i+=g) {
+            int j=i-g;
             if (bigger(items[i],items[j])) {
                 continue;
             }
             T tmp= (T) items[i];
             while (j>=0&&bigger(items[j],tmp)){
-                items[j+1]=items[j];
+                items[j+g]=items[j];
                 moveStep++;
-                j--;
+                j-=g;
             }
+            g=g/2;
         }
     }
     }
+}
