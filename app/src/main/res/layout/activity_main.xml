@@ -20,24 +20,29 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/activity_main_edt_items_hint"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-       <ListView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"></ListView>
-        <Button
-            android:id="@+id/activity_main_btn_generate"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="生成排序数"/>
-        <Button
-            android:id="@+id/activity_main_btn_sort"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="排序"/>
-    </LinearLayout>
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/action_main_sp"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"></Spinner>
+
+            <Button
+                android:id="@+id/activity_main_btn_generate"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="生成排序数"/>
+            <Button
+                android:id="@+id/activity_main_btn_sort"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="排序"/>
+        </LinearLayout>
+
+
 </LinearLayout>
