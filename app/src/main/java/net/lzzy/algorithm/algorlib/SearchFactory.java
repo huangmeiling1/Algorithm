@@ -22,6 +22,6 @@ public class SearchFactory  {
         return search;
     }
     public  static String [] getSortName(){
-        return new String[]{"顺序查找","二分查找"};
+        return new String[]{"顺序查找","二分查找","二分叉查找"};
     }
 }
