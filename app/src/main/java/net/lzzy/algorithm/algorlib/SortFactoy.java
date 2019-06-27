@@ -11,7 +11,7 @@ public class SortFactoy {
         BaseSort<T>sort;
         switch (key){
             case  0:
-                sort=  new DirectSort<>(items);
+                sort = new DirectSort<>(items);
                 break;
             case 1:
                 sort=new InsertSort<>(items);
@@ -20,7 +20,7 @@ public class SortFactoy {
                 sort=new ShellSort<>(items);
                 break;
             case 3:
-                sort=new BubbleSort<>(items);
+                sort= new BubbleSort<>(items);
                 break;
                 default:
                     return null;

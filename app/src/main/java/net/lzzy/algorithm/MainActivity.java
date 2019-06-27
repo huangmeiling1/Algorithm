@@ -2,20 +2,22 @@ package net.lzzy.algorithm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AndroidException;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.lzzy.algorithm.algorlib.BaseSearch;
 import net.lzzy.algorithm.algorlib.BaseSort;
-import net.lzzy.algorithm.algorlib.DirectSort;
-import net.lzzy.algorithm.algorlib.InsertSort;
+import net.lzzy.algorithm.algorlib.SearchFactory;
 import net.lzzy.algorithm.algorlib.SortFactoy;
 
-import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Random;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tvResult;
     int i, j;
     Spinner spinner;
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.activity_main_btn_generate).setOnClickListener(this);
         findViewById(R.id.activity_main_btn_sort).setOnClickListener(this);
         tvResult = findViewById(R.id.activity_main_tv_result);
+        final Spinner Search=findViewById(R.id.action_main_sp1);
         initSpinner();
+        Button listener=findViewById(R.id.listener);
+        listener.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseSearch<Integer> search= SearchFactory.getInstance(Search.getSelectedItemPosition(),items);
+                if (search!=null){
+                    int pos=search.search(v.getId());
 
+                    tvResult.setText("该元素位于数组的第".concat((pos+1)+"位"));
+                }
+            }
+        });
+
+    }
+    private  void resetSearch(){
+        container.removeAllViews();
+        generateItems();
+        if (spinner.getSelectedItemPosition()==1){
+
+        }
+//    btnSort.callOnClick();
+        for (Integer i:items){
+            Button btn=new Button(this);
+            btn.setText(String.format(i.toString(), Locale.CHINA));
+            btn.setId(i);
+            btn.setLayoutParams(new LinearLayout.LayoutParams(0,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,1));
+            btn.setOnClickListener(listener);
+            container.addView(btn);
+
+        }
 
     }
 
@@ -56,13 +90,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String result=sortNotNull.getResult();
                 tvResult.setText(result);
                 Toast.makeText(this, "总时长："+sort.getDuration(), Toast.LENGTH_SHORT).show();
-//                intsertSort();
+               intsertSort();
                 displayItems(tvResult);
                 break;
             default:
                 break;
         }
     }
+
     private void initSpinner(){
         spinner=findViewById(R.id.action_main_sp);
         spinner.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item, SortFactoy.getSortName()));

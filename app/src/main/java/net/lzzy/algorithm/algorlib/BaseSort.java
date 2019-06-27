@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
  * Description:  类型参数T需要加约束，约束T实现Comparble<T></>
  */
 public  abstract class BaseSort<T extends Comparable<? super T>> {
+    public T search;
     T[] items;
      long duration;
       int compareCount;
@@ -43,6 +44,10 @@ public  abstract class BaseSort<T extends Comparable<? super T>> {
         duration=System.currentTimeMillis()-start;
 
     }
+    private int cocat(int i) {
+        return 0;
+    }
+
     public abstract void sort();
     public long getDuration() {
         return duration;
