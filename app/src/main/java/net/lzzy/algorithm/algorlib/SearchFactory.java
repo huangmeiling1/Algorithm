@@ -13,7 +13,7 @@ public class SearchFactory  {
                search =  new DirectSort<>(items);
                 break;
             case 1:
-                search= new BinarySearch<>(items);
+                search=new
                 break;
             default:
                 return null;
